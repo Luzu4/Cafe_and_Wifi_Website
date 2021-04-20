@@ -1,0 +1,65 @@
+{% include "header.html" %}
+<h1>Cafes in London</h1>
+
+      <div class="box">
+    {% for cafe in cafes %}
+
+          <div class="card" style="width: 18rem;">
+              <img class="card-img-top" src={{cafe.img_url}} alt="Card image cap" height="200">
+              <div class="card-body">
+                <h5 class="card-title">{{cafe.name}}</h5>
+                  <p class="card-text"><b>Location:</b> {{cafe.location}}</p>
+                  <table class="table table-bordered">
+                      <thead>
+                      <tr>
+                          <th scope="col">Sockets</th>
+                          <th scope="col">Toilet</th>
+                          <th scope="col">Wi-Fi</th>
+                          <th scope="col">Can Take Calls</th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                      <tr>
+                          <th scope="row">
+                  {% if cafe.has_sockets > 0 %}
+                  <i class="em em-electric_plug" aria-role="presentation" aria-label="ELECTRIC PLUG"></i>
+                  {% endif %}
+                              </th>
+                          <td>
+                  {% if cafe.has_toilet > 0 %}
+                  <i class="em em-toilet" aria-role="presentation" aria-label="TOILET"></i>
+                  {% endif %}
+                          </td>
+                          <td>
+                  {% if cafe.has_wifi > 0 %}
+                  <i class="bi bi-wifi"></i>
+                  {% endif %}
+                          </td>
+                          <td>
+                  {% if cafe.can_take_calls > 0 %}
+                  <i class="bi bi-telephone-plus"></i>
+                  {% endif %}
+                          </td>
+                      </tr>
+                      </tbody>
+                  </table>
+                <p><a href={{cafe.map_url}} class="btn btn-primary">Show</a>
+                    {% if logged_in %}
+                    <a class="btn btn-primary" href="{{url_for('delete_cafe', cafe_id=cafe.id)}}">Delete</a>
+                    {% endif %}
+                </p>
+              </div>
+          </div>
+
+    {% endfor %}
+          {% if logged_in %}
+          <div class="card" style="width: 18rem;">
+              <img class="card-img-top" src='https://media.istockphoto.com/vectors/black-plus-sign-positive-symbol-vector-id688550958?k=6&m=688550958&s=612x612&w=0&h=nVa-a5Fb79Dgmqk3F00kop9kF4CXFpF4kh7vr91ERGk=' alt="Card image cap" width="200" height="200">
+              <div class="card-body">
+                <p><a href=# class="btn btn-primary">Add</a></p>
+
+              </div>
+          </div>
+          {% endif %}
+      </div>
+{% include 'footer.html'%}

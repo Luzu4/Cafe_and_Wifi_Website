@@ -1,0 +1,32 @@
+
+.box {
+display: flex;
+flex-wrap: wrap;
+
+}
+.box>*{
+flex: 0 0 400px;
+margin: 10px;
+}
+
+.box {
+margin: 100px;}
+
+.table {
+text-align: center;
+}
+
+.card{
+text-align: center;
+}
+
+h1 {
+font-family: 'Luminari', fantasy;
+text-align: center;
+color: black;
+margin-top: 100px;
+}
+
+body {
+background: white}
+
